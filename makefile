@@ -1,4 +1,4 @@
-vpath %.c src unit_test
+vpath %.c src test
 vpath %.h include
 
 objects = feiqiu_run.o feiqiu.o
@@ -10,9 +10,10 @@ feiqiu_run.o: feiqiu.h feiqiu_types.h
 
 feqiu.o: feiqiu_types.h
 
+.PHONY: test
 test: feiqiu_test.c feiqiu.c	
-	g++ $^ -o $@ -lpthread -lgtest
-	./test
+	g++ $^ -o unit_test -lpthread -lgtest
+	./unit_test
 
 .PHONY: clean
 clean:
