@@ -1,4 +1,4 @@
-vpath %.c src test
+vpath %.c src unit_test
 vpath %.h include
 
 objects = feiqiu_run.o feiqiu.o
