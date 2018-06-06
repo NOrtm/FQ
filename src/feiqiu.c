@@ -41,7 +41,7 @@ feiqiu_file_proto_run(feiqiu **handle, const char *protodata, int len)
 	}
 
 	if ((*handle)->current_state == HEADER) { // fill handle
-		printf("calling new file handle\n");
+		//printf("calling new file handle\n");
 		// if header is filled up, change it to DATA
 		packet_hdr_len = new_file_fill_handle(handle, protodata);
 		// if not filling up header
@@ -61,7 +61,7 @@ feiqiu_file_proto_run(feiqiu **handle, const char *protodata, int len)
 
 	packet_data_len = len - packet_hdr_len;
 	ptr_file_data = protodata + packet_hdr_len;  // point to data
-	printf("packet_data_len %d\n", packet_data_len);
+	//printf("packet_data_len %d\n", packet_data_len);
 
 	while (packet_data_len > 0 && (*handle)->file_size > (*handle)->file_data_already_writen) {
 		write((*handle)->fd, ptr_file_data, 1);
@@ -72,7 +72,7 @@ feiqiu_file_proto_run(feiqiu **handle, const char *protodata, int len)
 
 	// if true. last packet writen. mission complete
 	if ((*handle)->file_data_already_writen >= (*handle)->file_size) {
-		printf("filled up file\n");
+		//printf("filled up file\n");
 		// prepare for next new file.
 		close((*handle)->fd);
 		(*handle)->file_size = 0;
@@ -93,7 +93,7 @@ void
 feiqiu_file_proto_done_callback(feiqiu **handle, char *filename, char *filepath, void *userdata)
 {
 	/* do whatever you like to the file just recoveried. */
-	printf("in callback\n");
+	//printf("in callback\n");
 }
 
 int 
@@ -161,7 +161,7 @@ caught_packet(const struct pcap_pkthdr *cap_header, const u_char *packet, const 
 	int tcp_header_length, total_header_size, pkt_data_len;
 	u_char *pkt_data;
 
-	printf("========Got a %d bytes packet ========\n", cap_header->len);
+	//printf("========Got a %d bytes packet ========\n", cap_header->len);
 	
 	tcp_header_length = decode_tcp(packet+14+sizeof(struct iphdr));
 
@@ -173,11 +173,14 @@ caught_packet(const struct pcap_pkthdr *cap_header, const u_char *packet, const 
 
 	*len = pkt_data_len;
 
+	// for debug 
+	/*
 	if (*len > 0) {
 		dump(*protodata, *len);
 	} else {
 		printf("\t\tNo packet data\n");
 	}
+	*/
 }
 
 int 
