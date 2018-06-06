@@ -1,4 +1,8 @@
-#include "feiqiu.c"
+#include <stdio.h>
+#include <stdlib.h>
+#include <pcap.h>
+#include <string.h>
+#include "../include/feiqiu.h"
 
 int
 main(int argc, char const *argv[])
@@ -58,6 +62,7 @@ main(int argc, char const *argv[])
 			break;
 		}
 	}
+	feiqiu_file_proto_destory(&feiqiu_handle);
 	printf("%d\n", total_amount);
 }
 
