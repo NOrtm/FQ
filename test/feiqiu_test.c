@@ -13,10 +13,28 @@ TEST(FeiqiuInitTest, SuccessOnZero)
 TEST(FeqiuInitTest, ContainDesireValue)
 {
 	void *handle;
-	void *userdata = NULL;
+	void *userdata;
 	feiqiu_file_proto_init(&handle, userdata);
 	EXPECT_STREQ(((feiqiu *)handle)->filepath, "/dev/temp");
 }
+
+TEST(FeiqiuDestory, HandleNULL)
+{
+	void *handle;
+	handle = NULL;
+
+	EXPECT_EQ(-1, feiqiu_file_proto_destory(&handle));
+}
+
+TEST(FeqiuDestory, HandleNormal)
+{
+	void *handle;
+	handle = (void *)malloc(10);
+
+	EXPECT_EQ(0, feiqiu_file_proto_destory(&handle));
+}
+
+	
 
 int 
 main(int argc, char **argv)
