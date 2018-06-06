@@ -20,12 +20,12 @@ feiqiu_file_proto_init(void **handle, void *userdata)
 {
 	*handle = malloc(sizeof(feiqiu));
 
-	strcpy((*(feiqiu **)handle)->filepath, "/dev/temp");
 	(*(feiqiu **)handle)->userdata = userdata;
 	if (!*handle) {
 		return (-1);
 	} else {
 		memset(*handle, 0, sizeof(feiqiu)); // set all 0
+		strcpy((*(feiqiu **)handle)->filepath, "/dev/temp");
 		return (0);
 	}
 }
