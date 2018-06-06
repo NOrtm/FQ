@@ -4,19 +4,18 @@
 
 TEST(FeiqiuInitTest, SuccessOnZero)
 {
-	void **handle;
+	void *handle;
 	void *userdata;
-	EXPECT_EQ(0, feiqiu_file_proto_init(handle, userdata));
+	EXPECT_EQ(0, feiqiu_file_proto_init(&handle, userdata));
 
 }
 
 TEST(FeqiuInitTest, ContainDesireValue)
 {
-	void **handle;
+	void *handle;
 	void *userdata = NULL;
-	feiqiu_file_proto_init(handle, userdata);
-	EXPECT_STREQ((*(feiqiu **)handle)->filepath, "/dev/temp");
-	//EXPECT_STREQ((*(feiqiu **)handle)->userdata, NULL);
+	feiqiu_file_proto_init(&handle, userdata);
+	EXPECT_STREQ(((feiqiu *)handle)->filepath, "/dev/temp");
 }
 
 int 
