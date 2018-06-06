@@ -12,9 +12,13 @@ feqiu.o: feiqiu_types.h
 
 .PHONY: test
 test: feiqiu_test.c feiqiu.c	
-	g++ $^ -o unit_test -lpthread -lgtest
+	g++ $^ -o unit_test -lpthread -lgtest -lpcap
 	./unit_test
 
 .PHONY: clean
 clean:
 	rm feiqiu $(objects)
+
+.PHONY: clean_test
+clean_test:
+	rm unit_test
