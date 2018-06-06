@@ -1,10 +1,9 @@
 /* feiqiu headers */
 
-#ifndef __FEIQIU_H
-#define __FEIQIU_H
+#ifndef __FEIQIU_FUN_H
+#define __FEIQIU_FUN_H
 
 #include "feiqiu_types.h"
-
 
 /* feiqiu handle init */
 int
@@ -41,4 +40,4 @@ void
 dump(const char *data_buffer, const unsigned int length);
 
 
-#endif  /* __FEIQIU_H */
+#endif  /* __FEIQIU_FUN_H */
