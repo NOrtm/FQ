@@ -12,6 +12,7 @@ feqiu.o: feiqiu_types.h
 
 test: feiqiu_test.c feiqiu.c	
 	g++ $^ -o $@ -lpthread -lgtest
+	./test
 
 .PHONY: clean
 clean:
