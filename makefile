@@ -1,15 +1,18 @@
-vpath %.c src
+vpath %.c src test
 vpath %.h include
 
+objects = feiqiu_run.o feiqiu.o
 
-feiqiu: feiqiu_run.o feiqiu.o -lpcap
+feiqiu: $(objects) -lpcap
 	gcc $^ -o $@
 
-feiqiu_run.o: feiqiu_run.c feiqiu.h feiqiu_types.h
-	gcc -c $<
+feiqiu_run.o: feiqiu.h feiqiu_types.h
 
-feqiu.o: feiqiu.c feiqiu_types.h
-	gcc -c $<
+feqiu.o: feiqiu_types.h
 
-test: feiqiu_test.c
-	gcc $< 
+test: feiqiu_test.c feiqiu.c	
+	g++ $^ -o $@ -lpthread -lgtest
+
+.PHONY: clean
+clean:
+	rm feiqiu $(objects)
