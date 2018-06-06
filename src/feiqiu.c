@@ -116,7 +116,7 @@ new_file_fill_handle(feiqiu **handle, const char *protodata)
 	 * fill handle with filename, filesize etc just parsed out.
 	 * return file header length. */
 
-	dump(protodata, strlen(protodata));
+	//dump(protodata, strlen(protodata));
 	char *p;
 	char *string = strdup(protodata);
 	p = strtok(string, ":");
@@ -173,7 +173,7 @@ caught_packet(const struct pcap_pkthdr *cap_header, const u_char *packet, const 
 
 	*len = pkt_data_len;
 
-	if (*len > 0 && *len != 79) {
+	if (*len > 0) {
 		dump(*protodata, *len);
 	} else {
 		printf("\t\tNo packet data\n");
